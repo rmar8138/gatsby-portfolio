@@ -1,51 +1,98 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { createGlobalStyle } from "styled-components"
 
-import Header from "./header"
-import "./layout.css"
-
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
-  return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    </>
-  )
+const theme = {
+  black: "#111",
+  darkGrey: "#777",
+  lightGrey: "#d1d1d1",
+  white: "#ffffff",
+  bpMedium: "640px",
+  bpLarge: "840px",
+  bpXlarge: "1300px",
+  fsXsmall: "1.2rem",
+  fsSmall: "1.8rem",
+  fsMedium: "2.4rem",
+  fsLarge: "4rem",
+  fsXlarge: "6.4rem",
+  primaryFont: "Karla, Arial, sans-serif",
 }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+const GlobalStyle = createGlobalStyle`
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+
+  html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+
+  }
+
+  body {
+    font-size: ${({ theme }) => theme.fsSmall};
+    font-family: ${({ theme }) => theme.primaryFont};
+    color: ${({ theme }) => theme.black};
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: ${({ theme }) => theme.primaryFont};
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: 6rem;
+  }
+
+  h3 {
+    margin-bottom: 2rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.black};
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  img {
+    filter: brightness(1);
+  }
+
+  h1::selection,
+  h2::selection,
+  h3::selection,
+  h4::selection,
+  h5::selection,
+  h6::selection,
+  p::selection,
+  li::selection,
+  a::selection,
+  span::selection,
+  img::selection {
+    background-color: ${({ theme }) => theme.black};
+    color: ${({ theme }) => theme.white};
+  }
+`
+
+const Layout = ({ children }) => {
+  return (
+    <>
+      <GlobalStyle theme={theme} />
+      {children}
+    </>
+  )
 }
 
 export default Layout
