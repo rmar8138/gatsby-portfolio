@@ -1,14 +1,77 @@
 import React from "react"
 import { Link } from "gatsby"
+import styled from "styled-components"
+import Button from "./styles/Button"
+
+const StyledNav = styled.nav`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 2rem;
+  z-index: 2;
+
+  @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
+    padding: 2rem 10vw;
+  }
+
+  .invert {
+    color: ${({ theme }) => theme.white};
+
+    button {
+      color: ${({ theme }) => theme.white};
+    }
+
+    a {
+      color: ${({ theme }) => theme.white};
+    }
+  }
+
+  .nav.invert a::selection {
+    background-color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.black};
+  }
+`
+
+const MenuButton = styled(Button)`
+  @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
+    display: none;
+  }
+`
+
+const Navlist = styled.ul`
+  display: none;
+
+  @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
+    display: flex;
+  }
+
+  li {
+    a {
+      transition: all 0.2s ease-out;
+    }
+
+    a:hover {
+      color: ${({ theme }) => theme.darkGrey};
+    }
+
+    &:not(:last-child) {
+      margin-right: 4rem;
+    }
+  }
+`
 
 const Navbar = () => {
   return (
-    <nav id="nav">
+    <StyledNav>
       <span>
         <Link to="/">Ragan Martinez</Link>
       </span>
-      <button id="menuButton">Menu</button>
-      <ul>
+      <MenuButton>Menu</MenuButton>
+      <Navlist>
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -18,8 +81,8 @@ const Navbar = () => {
         <li>
           <Link to="/contact">Contact</Link>
         </li>
-      </ul>
-    </nav>
+      </Navlist>
+    </StyledNav>
   )
 }
 
