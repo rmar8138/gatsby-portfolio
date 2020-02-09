@@ -1,12 +1,10 @@
 import React from "react"
 import Layout from "./../components/Layout"
-import Navbar from "./../components/Navbar"
 
 const Home = () => {
   return (
     <Layout>
       <header>
-        <Navbar />
         <div class="header__text load-hidden">
           <div class="container">
             <h1 class="header__heading">Ragan Martinez</h1>

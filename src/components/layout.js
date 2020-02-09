@@ -1,5 +1,7 @@
 import React from "react"
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle, ThemeProvider } from "styled-components"
+import Navbar from "./Navbar"
+import Footer from "./Footer"
 
 const theme = {
   black: "#111",
@@ -88,10 +90,12 @@ const GlobalStyle = createGlobalStyle`
 
 const Layout = ({ children }) => {
   return (
-    <>
-      <GlobalStyle theme={theme} />
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Navbar />
       {children}
-    </>
+      <Footer />
+    </ThemeProvider>
   )
 }
 
