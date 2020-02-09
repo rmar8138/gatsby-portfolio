@@ -90,15 +90,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const Header = styled.header`
-  position: relative;
-  background-color: inherit;
-  height: 100vh;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`
-
 class Layout extends Component {
   state = {
     menuOpen: false,
@@ -115,10 +106,8 @@ class Layout extends Component {
     return (
       <ThemeProvider theme={theme}>
         <GlobalStyle menuOpen={menuOpen} />
-        <Header>
-          <Navbar toggleMenu={this.toggleMenu} menuOpen={menuOpen} />
-          {menuOpen && <Menu />}
-        </Header>
+        <Navbar toggleMenu={this.toggleMenu} menuOpen={menuOpen} />
+        {menuOpen && <Menu />}
         {children}
         <Footer />
       </ThemeProvider>
