@@ -1,6 +1,7 @@
-import React from "react"
-import { createGlobalStyle, ThemeProvider } from "styled-components"
+import React, { Component } from "react"
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
 import Navbar from "./Navbar"
+import Menu from "./Menu"
 import Footer from "./Footer"
 
 const theme = {
@@ -39,6 +40,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${({ theme }) => theme.primaryFont};
     color: ${({ theme }) => theme.black};
     line-height: 1.6;
+    overflow: ${props => (props.menuOpen ? "hidden" : "visible")};
   }
 
   h1,
@@ -88,15 +90,40 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const Layout = ({ children }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Navbar />
-      {children}
-      <Footer />
-    </ThemeProvider>
-  )
+const Header = styled.header`
+  position: relative;
+  background-color: inherit;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`
+
+class Layout extends Component {
+  state = {
+    menuOpen: false,
+  }
+
+  toggleMenu = () => {
+    this.setState(state => ({ menuOpen: !state.menuOpen }))
+  }
+
+  render() {
+    const { menuOpen } = this.state
+    const { children } = this.props
+
+    return (
+      <ThemeProvider theme={theme}>
+        <GlobalStyle menuOpen={menuOpen} />
+        <Header>
+          <Navbar toggleMenu={this.toggleMenu} menuOpen={menuOpen} />
+          {menuOpen && <Menu />}
+        </Header>
+        {children}
+        <Footer />
+      </ThemeProvider>
+    )
+  }
 }
 
 export default Layout

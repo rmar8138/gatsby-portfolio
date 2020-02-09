@@ -37,6 +37,7 @@ const StyledNav = styled.nav`
 `
 
 const MenuButton = styled(Button)`
+  color: ${props => (props.menuOpen ? props.theme.white : props.theme.black)};
   @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
     display: none;
   }
@@ -64,13 +65,15 @@ const Navlist = styled.ul`
   }
 `
 
-const Navbar = () => {
+const Navbar = ({ toggleMenu, menuOpen }) => {
   return (
     <StyledNav>
       <span>
         <Link to="/">Ragan Martinez</Link>
       </span>
-      <MenuButton>Menu</MenuButton>
+      <MenuButton onClick={() => toggleMenu()} menuOpen={menuOpen}>
+        {menuOpen ? "Close" : "Menu"}
+      </MenuButton>
       <Navlist>
         <li>
           <Link to="/">Home</Link>
