@@ -4,7 +4,8 @@ import styled from "styled-components"
 import Button from "./styles/Button"
 
 const StyledNav = styled.nav`
-  background-color: ${({ theme }) => theme.white};
+  background-color: ${({ menuOpen, theme }) =>
+    menuOpen ? theme.black : theme.white};
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -21,10 +22,6 @@ const StyledNav = styled.nav`
 
   .invert {
     color: ${({ theme }) => theme.white};
-
-    button {
-      color: ${({ theme }) => theme.white};
-    }
 
     a {
       color: ${({ theme }) => theme.white};
@@ -68,7 +65,7 @@ const Navlist = styled.ul`
 
 const Navbar = ({ toggleMenu, menuOpen }) => {
   return (
-    <StyledNav>
+    <StyledNav menuOpen={menuOpen}>
       <span>
         <Link to="/">Ragan Martinez</Link>
       </span>
