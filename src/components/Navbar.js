@@ -4,6 +4,7 @@ import styled from "styled-components"
 import Button from "./styles/Button"
 
 const StyledNav = styled.nav`
+  background-color: ${({ theme }) => theme.white};
   width: 100%;
   display: flex;
   justify-content: space-between;

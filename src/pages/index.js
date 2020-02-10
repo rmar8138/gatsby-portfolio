@@ -61,7 +61,7 @@ const Bio = styled.div`
   }
 `
 
-const Home = () => {
+const HomePage = () => {
   const data = useStaticQuery(graphql`
     query {
       allMarkdownRemark {
@@ -78,8 +78,6 @@ const Home = () => {
   `)
 
   const { frontmatter, html } = data.allMarkdownRemark.edges[0].node
-  console.log(frontmatter, html)
-
   return (
     <Layout>
       <Header>
@@ -109,4 +107,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage
