@@ -1,4 +1,5 @@
 import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 import Layout from "./../components/Layout"
 import Container from "./../components/styles/Container"
@@ -61,6 +62,24 @@ const Bio = styled.div`
 `
 
 const Home = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      allMarkdownRemark {
+        edges {
+          node {
+            frontmatter {
+              skills
+            }
+            html
+          }
+        }
+      }
+    }
+  `)
+
+  const { frontmatter, html } = data.allMarkdownRemark.edges[0].node
+  console.log(frontmatter, html)
+
   return (
     <Layout>
       <Header>
@@ -75,47 +94,14 @@ const Home = () => {
           <Skills>
             <h3>Skills</h3>
             <ul>
-              <li>JavaScript</li>
-              <li>Ruby</li>
-              <li>HTML5</li>
-              <li>CSS3</li>
-              <li>React</li>
-              <li>Node.js</li>
+              {frontmatter.skills.map(skill => (
+                <li key={skill}>{skill}</li>
+              ))}
             </ul>
           </Skills>
           <Bio>
             <h3>About</h3>
-            <div>
-              <p>
-                Hi! My name is Ragan, an aspiring web developer from Sydney
-                Australia, and currently enrolled in the Coder Academy Fast
-                Track bootcamp.
-              </p>
-              <p>
-                Ever since I picked up HTML and CSS from Codecademy in early
-                2018 I've developed a passion for web development and coding in
-                general. Since then I've been doing my best to learn as much as
-                I can through online courses, articles, building my own projects
-                and the occasional Stack Overflow search.
-              </p>
-              <p>
-                Being able to use logic and problem solving in endlessly
-                creative ways is what drew me to this field, and I hope to step
-                foot in the tech industry soon.
-              </p>
-              <p>
-                When I'm not stuck in my laptop, you can probably find me
-                playing{" "}
-                <a href="https://raganmartinez.bandcamp.com/album/other-worlds">
-                  sleepy guitar music
-                </a>
-                , at a gig or playing pool with the boys.
-              </p>
-              <p>
-                View my resume <a href="#">here</a> or get in touch with me
-                directly <a href="./contact/contact.html">here</a>.
-              </p>
-            </div>
+            <div dangerouslySetInnerHTML={{ __html: html }} />
           </Bio>
         </About>
       </Container>

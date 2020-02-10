@@ -96,7 +96,7 @@ const Footer = () => {
           </a>
         </li>
       </Social>
-      <span>Copyright &copy; 2019</span>
+      <span>Copyright &copy; {new Date().getFullYear()}</span>
     </StyledFooter>
   )
 }
