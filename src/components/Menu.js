@@ -34,6 +34,10 @@ const StyledMenu = styled.div`
     line-height: 1.4;
     color: ${({ theme }) => theme.white};
   }
+
+  @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
+    display: none;
+  }
 `
 
 const Menu = () => {

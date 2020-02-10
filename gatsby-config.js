@@ -7,6 +7,23 @@ module.exports = {
     title: `Ragan Martinez`,
     description: `Web Developer, Sydney Australia`,
     author: `Ragan Martinez`,
+    socials: [
+      {
+        name: "GitHub",
+        link: "https://github.com/rmar8138",
+        icon: "https://img.icons8.com/material/24/000000/github.png",
+      },
+      {
+        name: "LinkedIn",
+        link: "https://www.linkedin.com/in/ragan-martinez-151834158/",
+        icon: "https://img.icons8.com/android/24/000000/linkedin.png",
+      },
+      {
+        name: "Twitter",
+        link: "https://twitter.com/raganmartinez",
+        icon: "https://img.icons8.com/android/24/000000/twitter.png",
+      },
+    ],
   },
   plugins: [
     `gatsby-plugin-styled-components`,

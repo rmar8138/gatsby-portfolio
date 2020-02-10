@@ -1,4 +1,5 @@
 import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 
 const StyledFooter = styled.footer`
@@ -70,6 +71,21 @@ const Social = styled.ul`
 `
 
 const Footer = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          socials {
+            name
+            link
+            icon
+          }
+        }
+      }
+    }
+  `)
+  const socials = data.site.siteMetadata.socials
+
   return (
     <StyledFooter>
       <Logo>
@@ -80,21 +96,13 @@ const Footer = () => {
         <a href="mailto:ragan.martinez@live.com">ragan.martinez@live.com</a>
       </Contact>
       <Social>
-        <li>
-          <a target="_blank" href="https://github.com/rmar8138">
-            <img src="https://img.icons8.com/material/24/000000/github.png" />
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="http://linkedin.com">
-            <img src="https://img.icons8.com/android/24/000000/linkedin.png" />
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="http://twitter.com">
-            <img src="https://img.icons8.com/android/24/000000/twitter.png" />
-          </a>
-        </li>
+        {socials.map(social => (
+          <li key={social.link}>
+            <a target="_blank" href={social.link}>
+              <img src={social.icon} alt={social.name} />
+            </a>
+          </li>
+        ))}
       </Social>
       <span>Copyright &copy; {new Date().getFullYear()}</span>
     </StyledFooter>

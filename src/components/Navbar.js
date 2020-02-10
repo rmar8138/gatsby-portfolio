@@ -18,14 +18,7 @@ const StyledNav = styled.nav`
 
   @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
     padding: 2rem 10vw;
-  }
-
-  .invert {
-    color: ${({ theme }) => theme.white};
-
-    a {
-      color: ${({ theme }) => theme.white};
-    }
+    background-color: ${({ theme }) => theme.white};
   }
 
   .nav.invert a::selection {
@@ -36,6 +29,7 @@ const StyledNav = styled.nav`
 
 const MenuButton = styled(Button)`
   color: ${props => (props.menuOpen ? props.theme.white : props.theme.black)};
+
   @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
     display: none;
   }
