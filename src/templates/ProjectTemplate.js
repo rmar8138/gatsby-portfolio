@@ -154,7 +154,7 @@ export const query = graphql`
 const ProjectTemplate = ({ data }) => {
   const { frontmatter, html } = data.markdownRemark
   return (
-    <Layout>
+    <Layout invert>
       <Project>
         <section>
           <Container>
@@ -163,11 +163,7 @@ const ProjectTemplate = ({ data }) => {
               <div>
                 <h1>{frontmatter.title}</h1>
                 <h2>{frontmatter.description}</h2>
-                <a
-                  class="project-page__github"
-                  target="_blank"
-                  href={frontmatter.link}
-                >
+                <a target="_blank" href={frontmatter.link}>
                   View GitHub
                 </a>
               </div>

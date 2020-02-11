@@ -106,7 +106,11 @@ class Layout extends Component {
     return (
       <ThemeProvider theme={theme}>
         <GlobalStyle menuOpen={menuOpen} />
-        <Navbar toggleMenu={this.toggleMenu} menuOpen={menuOpen} />
+        <Navbar
+          toggleMenu={this.toggleMenu}
+          menuOpen={menuOpen}
+          invert={this.props.invert}
+        />
         {menuOpen && <Menu />}
         {children}
         <Footer />

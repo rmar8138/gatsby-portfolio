@@ -3,9 +3,17 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import Button from "./styles/Button"
 
+const navColour = ({ invert, menuOpen, theme }) => {
+  if (menuOpen || invert) {
+    return theme.black
+  }
+
+  return theme.white
+}
+
 const StyledNav = styled.nav`
-  background-color: ${({ menuOpen, theme }) =>
-    menuOpen ? theme.black : theme.white};
+  background-color: ${({ invert, menuOpen, theme }) =>
+    invert || menuOpen ? theme.black : theme.white};
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -16,9 +24,14 @@ const StyledNav = styled.nav`
   padding: 2rem;
   z-index: 2;
 
+  a {
+    color: ${({ invert, theme }) => (invert ? theme.white : theme.black)};
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
     padding: 2rem 10vw;
-    background-color: ${({ theme }) => theme.white};
+    background-color: ${({ invert, theme }) =>
+      invert ? theme.black : theme.white};
   }
 
   .nav.invert a::selection {
@@ -28,7 +41,8 @@ const StyledNav = styled.nav`
 `
 
 const MenuButton = styled(Button)`
-  color: ${props => (props.menuOpen ? props.theme.white : props.theme.black)};
+  color: ${({ invert, menuOpen, theme }) =>
+    menuOpen || invert ? theme.white : theme.black};
 
   @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
     display: none;
@@ -57,13 +71,17 @@ const Navlist = styled.ul`
   }
 `
 
-const Navbar = ({ toggleMenu, menuOpen }) => {
+const Navbar = ({ invert, toggleMenu, menuOpen }) => {
   return (
-    <StyledNav menuOpen={menuOpen}>
+    <StyledNav menuOpen={menuOpen} invert={invert}>
       <span>
         <Link to="/">Ragan Martinez</Link>
       </span>
-      <MenuButton onClick={() => toggleMenu()} menuOpen={menuOpen}>
+      <MenuButton
+        onClick={() => toggleMenu()}
+        menuOpen={menuOpen}
+        invert={invert}
+      >
         {menuOpen ? "Close" : "Menu"}
       </MenuButton>
       <Navlist>
