@@ -64,7 +64,9 @@ const Bio = styled.div`
 const HomePage = () => {
   const data = useStaticQuery(graphql`
     query {
-      allMarkdownRemark {
+      allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/home/.*\\\\.md$/" } }
+      ) {
         edges {
           node {
             frontmatter {

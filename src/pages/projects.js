@@ -21,14 +21,9 @@ const Projects = styled.div`
       margin-top: -10rem;
     }
   }
-
-  /* &__view-project {
-    @extend .projects__item__view-project;
-  } */
 `
 
 const ProjectsListItem = styled.li`
-  /* @extend .projects__item; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -72,7 +67,6 @@ const ProjectsListItem = styled.li`
   }
 
   &:last-child::after {
-    /* // remove vertical rule after last item */
     display: none;
   }
 `
@@ -109,72 +103,47 @@ const ProjectLink = styled(Link)`
 `
 
 const ProjectsPage = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/projects/.*\\\\.md$/" } }
+      ) {
+        edges {
+          node {
+            frontmatter {
+              title
+              description
+            }
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `)
+  const { edges } = data.allMarkdownRemark
+
   return (
     <Layout>
       <Projects>
         <Container>
           <h1>Projects</h1>
           <ul>
-            <ProjectsListItem>
-              <ProjectImage to="/">
-                <img src={img} alt="Project" />
-              </ProjectImage>
-              <ProjectText>
-                <h4>Flashcard Terminal App</h4>
-                <p>
-                  A flashcard app built on Ruby that runs in the terminal. Users
-                  can perform CRUD operations on cards and decks, and review
-                  decks for study.
-                </p>
-                <ProjectLink to="/">View Project</ProjectLink>
-              </ProjectText>
-            </ProjectsListItem>
-            <ProjectsListItem>
-              <ProjectImage to="/">
-                <img class="projects__item__image" src={img} alt="Project" />
-              </ProjectImage>
-              <ProjectText class="projects__item__text">
-                <h4 class="projects__item__title staggered-fade-in">
-                  Archive Studio Website
-                </h4>
-                <p class="projects__item__description staggered-fade-in">
-                  Website built for ar-chive, a design studio based in Sydney.
-                  Built on Gatsby.js using Styled Components and GraphQL.
-                </p>
-                <ProjectLink to="/">View Project</ProjectLink>
-              </ProjectText>
-            </ProjectsListItem>
-            <ProjectsListItem>
-              <ProjectImage to="/">
-                <img class="projects__item__image" src={img} alt="Project" />
-              </ProjectImage>
-              <ProjectText class="projects__item__text">
-                <h4 class="projects__item__title staggered-fade-in">
-                  Hex Colour Memory Game
-                </h4>
-                <p class="projects__item__description staggered-fade-in">
-                  A simple memory game based on randomly generated hexadecimal
-                  colour values. Built on HTML, CSS/Sass and JavaScript.
-                </p>
-                <ProjectLink to="/">View Project</ProjectLink>
-              </ProjectText>
-            </ProjectsListItem>
-            <ProjectsListItem>
-              <ProjectImage to="/">
-                <img class="projects__item__image" src={img} alt="Project" />
-              </ProjectImage>
-              <ProjectText class="projects__item__text">
-                <h4 class="projects__item__title staggered-fade-in">
-                  PB Tracker
-                </h4>
-                <p class="projects__item__description staggered-fade-in">
-                  An application that allows users to input and track their
-                  personal best gym lifts on a chart. Built on React/Redux,
-                  Chart.js, Reactstrap and Firebase.
-                </p>
-                <ProjectLink to="/">View Project</ProjectLink>
-              </ProjectText>
-            </ProjectsListItem>
+            {edges.map(edge => (
+              <ProjectsListItem key={edge.node.fields.slug}>
+                <ProjectImage to={`/projects/${edge.node.fields.slug}`}>
+                  <img src={img} alt={edge.node.frontmatter.title} />
+                </ProjectImage>
+                <ProjectText>
+                  <h4>{edge.node.frontmatter.title}</h4>
+                  <p>{edge.node.frontmatter.description}</p>
+                  <ProjectLink to={`/projects/${edge.node.fields.slug}`}>
+                    View Project
+                  </ProjectLink>
+                </ProjectText>
+              </ProjectsListItem>
+            ))}
           </ul>
         </Container>
       </Projects>
