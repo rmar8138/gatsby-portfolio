@@ -143,6 +143,7 @@ export const query = graphql`
       frontmatter {
         title
         description
+        link
         tech
       }
       html
@@ -150,23 +151,22 @@ export const query = graphql`
   }
 `
 
-const ProjectTemplate = () => {
+const ProjectTemplate = ({ data }) => {
+  const { frontmatter, html } = data.markdownRemark
   return (
     <Layout>
       <Project>
         <section>
           <Container>
             <ProjectHeader>
-              <img src={img} alt="Project" />
+              <img src={img} alt={frontmatter.title} />
               <div>
-                <h1>Hex Colour Memory Game</h1>
-                <h2>
-                  A memory game based on randomly generated hexadecimal colours
-                </h2>
+                <h1>{frontmatter.title}</h1>
+                <h2>{frontmatter.description}</h2>
                 <a
                   class="project-page__github"
                   target="_blank"
-                  href="https://github.com/rmar8138/hex-color-memory-game"
+                  href={frontmatter.link}
                 >
                   View GitHub
                 </a>
@@ -176,25 +176,13 @@ const ProjectTemplate = () => {
               <ProjectTech>
                 <h3>Tech</h3>
                 <ul>
-                  <li>JavaScript</li>
-                  <li>HTML</li>
-                  <li>CSS</li>
-                  <li>Sass</li>
+                  {frontmatter.tech.map(item => (
+                    <li key={item}>{item}</li>
+                  ))}
                 </ul>
               </ProjectTech>
               <ProjectText>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Quisquam hic dignissimos a, quaerat iusto ad quae sed
-                  asperiores alias laboriosam!
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Magnam sunt eos esse ratione. Odio sunt soluta ullam, quia
-                  iste dignissimos! Accusantium magni repudiandae fugiat totam
-                  incidunt in delectus sit ipsam quisquam, quod assumenda,
-                  laboriosam, voluptates maiores nam nobis suscipit voluptate.
-                </p>
+                <div dangerouslySetInnerHTML={{ __html: html }} />
                 <Link to="/projects">Back</Link>
               </ProjectText>
             </ProjectBody>

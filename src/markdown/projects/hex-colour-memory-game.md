@@ -1,6 +1,7 @@
 ---
 title: "Hex Colour Memory Game"
 description: "A memory game based on randomly generated hexadecimal colours"
+link: "https://github.com/rmar8138/hex-color-memory-game"
 tech: ["JavaScript", "HTML", "CSS/Sass"]
 ---
 

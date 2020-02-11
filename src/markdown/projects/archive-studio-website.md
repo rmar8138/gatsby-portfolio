@@ -1,6 +1,7 @@
 ---
 title: "Ar-chive Studio Website"
 description: "Homepage website for ar-chive, a Sydney based art studio"
+link: "https://github.com/rmar8138/ar-chive"
 tech: ["React", "Gatsby.js", "Styled Components"]
 ---
 

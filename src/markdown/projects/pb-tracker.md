@@ -1,6 +1,7 @@
 ---
 title: "PB Tracker"
 description: "An application that allows users to track their personal best gym lifts on a visual graph"
+link: "https://github.com/rmar8138/pb-tracker"
 tech: ["React", "React Router", "Redux", "Firebase"]
 ---
 

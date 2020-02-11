@@ -1,6 +1,7 @@
 ---
 title: "The Mind"
 description: "Web/Mobile recreation of the card game 'The Mind'"
+link: "https://github.com/rmar8138/the_mind"
 tech:
   [
     "React",

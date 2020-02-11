@@ -1,6 +1,7 @@
 ---
 title: "Flashcard App"
 description: "A flashcard app built in Ruby that runs in the terminal"
+link: "https://github.com/rmar8138/flashcard-app"
 tech: ["Ruby"]
 ---
 
