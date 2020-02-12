@@ -13,6 +13,21 @@ const Project = styled.main`
   section {
     padding-top: 10vh;
   }
+
+  & h1::selection,
+  & h2::selection,
+  & h3::selection,
+  & h4::selection,
+  & h5::selection,
+  & h6::selection,
+  & p::selection,
+  & li::selection,
+  & a::selection,
+  & span::selection,
+  & img::selection {
+    background-color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.black};
+  }
 `
 
 const ProjectHeader = styled.div`
@@ -131,6 +146,10 @@ const ProjectText = styled.div`
     margin: 2rem 0;
   }
 
+  p:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.bpLarge}) {
     width: 50%;
     margin-left: 2rem;
@@ -153,6 +172,7 @@ export const query = graphql`
 
 const ProjectTemplate = ({ data }) => {
   const { frontmatter, html } = data.markdownRemark
+  console.log(html)
   return (
     <Layout invert>
       <Project>

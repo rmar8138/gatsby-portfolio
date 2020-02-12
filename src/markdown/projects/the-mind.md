@@ -12,8 +12,9 @@ tech:
     "Socket.IO",
     "Styled Components",
   ]
+order: 2
 ---
 
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam hic dignissimos a, quaerat iusto ad quae sed asperiores alias laboriosam!
+The Mind is an application based off of the card game with the same name. Four players are dealt cards from a deck of 1-100. Without knowing each other's cards and making any verbal contact, the four players must play their cards in ascending order to win.
 
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam sunt eos esse ratione. Odio sunt soluta ullam, quia iste dignissimos! Accusantium magni repudiandae fugiat totam incidunt in delectus sit ipsam quisquam, quod assumenda, laboriosam, voluptates maiores nam nobis suscipit voluptate.
+The Mind was built in order to challenge myself and learn more about Socket.IO and real-time bi-directional communication. React was used to handle user interactions and gameplay UI as well as hold game logic, Express and Socket.IO was used to contain the logic for transferring information in real-time between players, and MongoDB was used to store persistent data about rooms.

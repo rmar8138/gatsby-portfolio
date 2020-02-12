@@ -3,8 +3,9 @@ title: "Flashcard App"
 description: "A flashcard app built in Ruby that runs in the terminal"
 link: "https://github.com/rmar8138/flashcard-app"
 tech: ["Ruby"]
+order: 5
 ---
 
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam hic dignissimos a, quaerat iusto ad quae sed asperiores alias laboriosam!
+Flashcard App was built as the first assignment of the Coder Academy Fast Track bootcamp. For the assignment, we were tasked to build a command line application in Ruby.
 
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam sunt eos esse ratione. Odio sunt soluta ullam, quia iste dignissimos! Accusantium magni repudiandae fugiat totam incidunt in delectus sit ipsam quisquam, quod assumenda, laboriosam, voluptates maiores nam nobis suscipit voluptate.
+Flashcard App allows users to build, save and manage their own custom flashcard decks from the command line. These flashcards were then able to be reviewed in the same way that physical flashcards are used; users cycle through the cards and answered each card, with incorrect cards being placed aside for subsequent reviews. A score is tallied up and presented to the user afterwards.

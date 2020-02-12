@@ -2,9 +2,10 @@
 title: "PB Tracker"
 description: "An application that allows users to track their personal best gym lifts on a visual graph"
 link: "https://github.com/rmar8138/pb-tracker"
-tech: ["React", "React Router", "Redux", "Firebase"]
+tech: ["React", "React Router", "Redux", "Firebase", "Chart.js"]
+order: 6
 ---
 
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam hic dignissimos a, quaerat iusto ad quae sed asperiores alias laboriosam!
+PB Tracker is an application that allows users to sign in and create a log of their personal bests in various lifts, and track them visually on a graph over time. Users enter information through React, and the data is stored in Firebase's Realtime Database. This data is then pulled in and managed in state by Redux, and displayed using Chart.js
 
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam sunt eos esse ratione. Odio sunt soluta ullam, quia iste dignissimos! Accusantium magni repudiandae fugiat totam incidunt in delectus sit ipsam quisquam, quod assumenda, laboriosam, voluptates maiores nam nobis suscipit voluptate.
+This was the first React application I built myself from scratch, and was what helped me get comfortable with the application design and development process through React and Redux.

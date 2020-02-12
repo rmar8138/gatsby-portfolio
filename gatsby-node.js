@@ -22,12 +22,14 @@ module.exports.createPages = async ({ graphql, actions }) => {
     query {
       allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/projects/.*\\\\.md$/" } }
+        sort: { fields: [frontmatter___order], order: ASC }
       ) {
         edges {
           node {
-            fields {
-              slug
+            frontmatter {
+              skills
             }
+            html
           }
         }
       }
