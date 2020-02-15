@@ -27,9 +27,15 @@ module.exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             frontmatter {
-              skills
+              title
+              description
+              link
+              tech
             }
             html
+            fields {
+              slug
+            }
           }
         }
       }
