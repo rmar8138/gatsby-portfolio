@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import Button from "./styles/Button"
+import Button from "./styles/button"
 
 const navColour = ({ invert, menuOpen, theme }) => {
   if (menuOpen || invert) {

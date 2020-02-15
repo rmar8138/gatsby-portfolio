@@ -6,11 +6,6 @@ const StyledLink = styled(Link)`
   font-size: ${({ theme }) => theme.fsLarge};
   line-height: 1.4;
   color: ${({ theme }) => theme.white};
-
-  /* .active {
-    color: ${({ theme }) => theme.darkGrey};
-    pointer-events: none;
-  } */
 `
 
 const StyledMenu = styled.div`

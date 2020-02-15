@@ -1,8 +1,8 @@
 import React, { Component } from "react"
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
-import Navbar from "./Navbar"
-import Menu from "./Menu"
-import Footer from "./Footer"
+import { createGlobalStyle, ThemeProvider } from "styled-components"
+import Navbar from "./navbar"
+import Menu from "./menu"
+import Footer from "./footer"
 
 const theme = {
   black: "#111",
