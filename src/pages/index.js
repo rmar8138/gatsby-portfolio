@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
-import Layout from "../components/layout"
-import Container from "../components/styles/container"
+import Layout from "./../components/layout"
+import Container from "./../components/styles/container"
 
 const Header = styled.div`
   position: relative;
