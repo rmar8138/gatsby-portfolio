@@ -3,7 +3,8 @@ title: "Flashcard App"
 description: "A flashcard app built in Ruby that runs in the terminal"
 link: "https://github.com/rmar8138/flashcard-app"
 tech: ["Ruby"]
-order: 5
+image: "./image.png"
+order: 4
 ---
 
 Flashcard App was built as the first assignment of the Coder Academy Fast Track bootcamp. For the assignment, we were tasked to build a command line application in Ruby.

@@ -31,6 +31,17 @@ module.exports.createPages = async ({ graphql, actions }) => {
               description
               link
               tech
+              image {
+                childImageSharp {
+                  fluid {
+                    src
+                    srcSet
+                    aspectRatio
+                    sizes
+                    base64
+                  }
+                }
+              }
             }
             html
             fields {

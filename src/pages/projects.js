@@ -1,10 +1,19 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
 import styled from "styled-components"
 import Layout from "./../components/layout"
 import Container from "./../components/styles/container"
 
-const img = require("../img/project-1.jpg")
+const StyledImg = styled(Img)`
+  display: block;
+  position: relative;
+  width: 100vw;
+
+  @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
+    max-width: 100%;
+  }
+`
 
 const Projects = styled.div`
   text-align: center;
@@ -107,12 +116,20 @@ const ProjectsPage = () => {
     query {
       allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/projects/.*\\\\.md$/" } }
+        sort: { fields: [frontmatter___order], order: ASC }
       ) {
         edges {
           node {
             frontmatter {
               title
               description
+              image {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
             }
             fields {
               slug
@@ -123,7 +140,6 @@ const ProjectsPage = () => {
     }
   `)
   const { edges } = data.allMarkdownRemark
-
   return (
     <Layout>
       <Projects>
@@ -133,7 +149,10 @@ const ProjectsPage = () => {
             {edges.map(edge => (
               <ProjectsListItem key={edge.node.fields.slug}>
                 <ProjectImage to={`/projects/${edge.node.fields.slug}`}>
-                  <img src={img} alt={edge.node.frontmatter.title} />
+                  <StyledImg
+                    fluid={edge.node.frontmatter.image.childImageSharp.fluid}
+                    alt={edge.node.frontmatter.title}
+                  />
                 </ProjectImage>
                 <ProjectText>
                   <h4>{edge.node.frontmatter.title}</h4>

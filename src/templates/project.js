@@ -1,10 +1,19 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import Img from "gatsby-image"
 import styled from "styled-components"
 import Layout from "./../components/layout"
 import Container from "./../components/styles/container"
 
-const img = require("../img/project-1.jpg")
+const StyledImg = styled(Img)`
+  display: block;
+  position: relative;
+  width: 100vw;
+
+  @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
+    max-width: 100%;
+  }
+`
 
 const Project = styled.main`
   background-color: ${({ theme }) => theme.black};
@@ -37,16 +46,6 @@ const ProjectHeader = styled.div`
 
   & > * {
     margin-bottom: 2rem;
-  }
-
-  img {
-    display: block;
-    position: relative;
-    width: 100vw;
-
-    @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
-      max-width: 50%;
-    }
   }
 
   div {
@@ -164,6 +163,13 @@ export const query = graphql`
         description
         link
         tech
+        image {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
       html
     }
@@ -172,14 +178,17 @@ export const query = graphql`
 
 const ProjectTemplate = ({ data }) => {
   const { frontmatter, html } = data.markdownRemark
-  console.log(html)
   return (
     <Layout invert>
       <Project>
         <section>
           <Container>
             <ProjectHeader>
-              <img src={img} alt={frontmatter.title} />
+              <StyledImg
+                fluid={frontmatter.image.childImageSharp.fluid}
+                alt={frontmatter.title}
+                imgStyle={{ objectFit: "contain" }}
+              />
               <div>
                 <h1>{frontmatter.title}</h1>
                 <h2>{frontmatter.description}</h2>
