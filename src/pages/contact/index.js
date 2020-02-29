@@ -2,7 +2,7 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import Layout from "./../../components/layout"
 import Container from "./../../components/container"
-import { Contact, SocialList } from "./styles"
+import { Contact, SocialList } from "./_styles"
 
 const ContactPage = () => {
   const data = useStaticQuery(graphql`

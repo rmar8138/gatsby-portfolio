@@ -9,7 +9,7 @@ import {
   ProjectImage,
   ProjectText,
   ProjectLink,
-} from "./styles"
+} from "./_styles"
 
 const ProjectsPage = () => {
   const data = useStaticQuery(graphql`
