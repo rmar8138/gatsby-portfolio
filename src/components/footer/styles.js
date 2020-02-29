@@ -1,8 +1,6 @@
-import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 
-const StyledFooter = styled.footer`
+export const StyledFooter = styled.footer`
   background-color: ${({ theme }) => theme.black};
   color: ${({ theme }) => theme.white};
   height: 100vh;
@@ -41,7 +39,7 @@ const StyledFooter = styled.footer`
   }
 `
 
-const Logo = styled.h4`
+export const Logo = styled.h4`
   a {
     color: ${({ theme }) => theme.white};
     font-size: ${({ theme }) => theme.fsLarge};
@@ -49,7 +47,7 @@ const Logo = styled.h4`
   }
 `
 
-const Contact = styled.div`
+export const Contact = styled.div`
   h5 {
     font-weight: 300;
     color: ${({ theme }) => theme.darkGrey};
@@ -60,7 +58,7 @@ const Contact = styled.div`
   }
 `
 
-const Social = styled.ul`
+export const Social = styled.ul`
   display: flex;
   justify-content: space-evenly;
 
@@ -69,44 +67,3 @@ const Social = styled.ul`
     filter: invert(100%);
   }
 `
-
-const Footer = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          socials {
-            name
-            link
-            icon
-          }
-        }
-      }
-    }
-  `)
-  const socials = data.site.siteMetadata.socials
-
-  return (
-    <StyledFooter>
-      <Logo>
-        <a>RM</a>
-      </Logo>
-      <Contact>
-        <h5>Email</h5>
-        <a href="mailto:ragan.martinez@live.com">ragan.martinez@live.com</a>
-      </Contact>
-      <Social>
-        {socials.map(social => (
-          <li key={social.link}>
-            <a target="_blank" href={social.link}>
-              <img src={social.icon} alt={social.name} />
-            </a>
-          </li>
-        ))}
-      </Social>
-      <span>Copyright &copy; {new Date().getFullYear()}</span>
-    </StyledFooter>
-  )
-}
-
-export default Footer

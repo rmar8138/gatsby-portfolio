@@ -1,17 +1,7 @@
-import React from "react"
-import { Link } from "gatsby"
 import styled from "styled-components"
-import Button from "./styles/button"
+import Button from "./../button"
 
-const navColour = ({ invert, menuOpen, theme }) => {
-  if (menuOpen || invert) {
-    return theme.black
-  }
-
-  return theme.white
-}
-
-const StyledNav = styled.nav`
+export const StyledNav = styled.nav`
   background-color: ${({ invert, menuOpen, theme }) =>
     invert || menuOpen ? theme.black : theme.white};
   width: 100%;
@@ -40,7 +30,7 @@ const StyledNav = styled.nav`
   }
 `
 
-const MenuButton = styled(Button)`
+export const MenuButton = styled(Button)`
   color: ${({ invert, menuOpen, theme }) =>
     menuOpen || invert ? theme.white : theme.black};
 
@@ -49,7 +39,7 @@ const MenuButton = styled(Button)`
   }
 `
 
-const Navlist = styled.ul`
+export const Navlist = styled.ul`
   display: none;
 
   @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
@@ -70,33 +60,3 @@ const Navlist = styled.ul`
     }
   }
 `
-
-const Navbar = ({ invert, toggleMenu, menuOpen }) => {
-  return (
-    <StyledNav menuOpen={menuOpen} invert={invert}>
-      <span>
-        <Link to="/">Ragan Martinez</Link>
-      </span>
-      <MenuButton
-        onClick={() => toggleMenu()}
-        menuOpen={menuOpen}
-        invert={invert}
-      >
-        {menuOpen ? "Close" : "Menu"}
-      </MenuButton>
-      <Navlist>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/projects">Projects</Link>
-        </li>
-        <li>
-          <Link to="/contact">Contact</Link>
-        </li>
-      </Navlist>
-    </StyledNav>
-  )
-}
-
-export default Navbar
