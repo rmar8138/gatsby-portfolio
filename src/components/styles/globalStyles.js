@@ -1,10 +1,6 @@
-import React, { Component } from "react"
-import { createGlobalStyle, ThemeProvider } from "styled-components"
-import Navbar from "./navbar"
-import Menu from "./menu"
-import Footer from "./footer"
+import { createGlobalStyle } from "styled-components"
 
-const theme = {
+export const theme = {
   black: "#111",
   darkGrey: "#777",
   lightGrey: "#d1d1d1",
@@ -20,7 +16,7 @@ const theme = {
   primaryFont: "Karla, Arial, sans-serif",
 }
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   *,
   *::before,
   *::after {
@@ -89,34 +85,3 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.white};
   }
 `
-
-class Layout extends Component {
-  state = {
-    menuOpen: false,
-  }
-
-  toggleMenu = () => {
-    this.setState(state => ({ menuOpen: !state.menuOpen }))
-  }
-
-  render() {
-    const { menuOpen } = this.state
-    const { children } = this.props
-
-    return (
-      <ThemeProvider theme={theme}>
-        <GlobalStyle menuOpen={menuOpen} />
-        <Navbar
-          toggleMenu={this.toggleMenu}
-          menuOpen={menuOpen}
-          invert={this.props.invert}
-        />
-        {menuOpen && <Menu />}
-        {children}
-        <Footer />
-      </ThemeProvider>
-    )
-  }
-}
-
-export default Layout

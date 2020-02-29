@@ -6,6 +6,7 @@ skills:
     "Node.js",
     "Express",
     "MongoDB",
+    "GraphQL",
     "Ruby",
     "Ruby on Rails",
     "PostgreSQL",

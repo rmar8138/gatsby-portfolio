@@ -1,14 +1,13 @@
-import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
   font-size: ${({ theme }) => theme.fsLarge};
   line-height: 1.4;
   color: ${({ theme }) => theme.white};
 `
 
-const StyledMenu = styled.div`
+export const StyledMenu = styled.div`
   padding: 160px 80px;
   background-color: ${({ theme }) => theme.black};
   position: fixed;
@@ -34,24 +33,3 @@ const StyledMenu = styled.div`
     display: none;
   }
 `
-
-const Menu = () => {
-  return (
-    <StyledMenu>
-      <h3>Menu</h3>
-      <ul>
-        <li>
-          <StyledLink to="/">Home</StyledLink>
-        </li>
-        <li>
-          <StyledLink to="/projects">Projects</StyledLink>
-        </li>
-        <li>
-          <StyledLink to="/contact">Contact</StyledLink>
-        </li>
-      </ul>
-    </StyledMenu>
-  )
-}
-
-export default Menu

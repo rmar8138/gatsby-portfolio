@@ -1,11 +1,7 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import Img from "gatsby-image"
 import styled from "styled-components"
-import Layout from "./../components/layout"
-import Container from "./../components/styles/container"
+import Img from "gatsby-image"
 
-const StyledImg = styled(Img)`
+export const StyledImg = styled(Img)`
   display: block;
   position: relative;
   width: 100vw;
@@ -15,7 +11,7 @@ const StyledImg = styled(Img)`
   }
 `
 
-const Project = styled.main`
+export const Project = styled.main`
   background-color: ${({ theme }) => theme.black};
   color: ${({ theme }) => theme.white};
 
@@ -39,7 +35,7 @@ const Project = styled.main`
   }
 `
 
-const ProjectHeader = styled.div`
+export const ProjectHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,7 +96,7 @@ const ProjectHeader = styled.div`
   }
 `
 
-const ProjectBody = styled.div`
+export const ProjectBody = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,7 +111,7 @@ const ProjectBody = styled.div`
   }
 `
 
-const ProjectTech = styled.div`
+export const ProjectTech = styled.div`
   width: 100%;
 
   h3 {
@@ -135,7 +131,7 @@ const ProjectTech = styled.div`
   }
 `
 
-const ProjectText = styled.div`
+export const ProjectText = styled.div`
   a {
     color: ${({ theme }) => theme.darkGrey};
     display: inline-block;
@@ -154,68 +150,3 @@ const ProjectText = styled.div`
     margin-left: 2rem;
   }
 `
-
-export const query = graphql`
-  query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        title
-        description
-        link
-        tech
-        image {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
-      html
-    }
-  }
-`
-
-const ProjectTemplate = ({ data }) => {
-  const { frontmatter, html } = data.markdownRemark
-  return (
-    <Layout invert>
-      <Project>
-        <section>
-          <Container>
-            <ProjectHeader>
-              <StyledImg
-                fluid={frontmatter.image.childImageSharp.fluid}
-                alt={frontmatter.title}
-                imgStyle={{ objectFit: "contain" }}
-              />
-              <div>
-                <h1>{frontmatter.title}</h1>
-                <h2>{frontmatter.description}</h2>
-                <a target="_blank" href={frontmatter.link}>
-                  View GitHub
-                </a>
-              </div>
-            </ProjectHeader>
-            <ProjectBody>
-              <ProjectTech>
-                <h3>Tech</h3>
-                <ul>
-                  {frontmatter.tech.map(item => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </ProjectTech>
-              <ProjectText>
-                <div dangerouslySetInnerHTML={{ __html: html }} />
-                <Link to="/projects">Back</Link>
-              </ProjectText>
-            </ProjectBody>
-          </Container>
-        </section>
-      </Project>
-    </Layout>
-  )
-}
-
-export default ProjectTemplate
