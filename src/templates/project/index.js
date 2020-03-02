@@ -1,6 +1,5 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Layout from "./../../components/layout"
 import Container from "./../../components/container"
 import {
   StyledImg,
@@ -35,42 +34,40 @@ export const query = graphql`
 const ProjectTemplate = ({ data }) => {
   const { frontmatter, html } = data.markdownRemark
   return (
-    <Layout invert>
-      <Project>
-        <section>
-          <Container>
-            <ProjectHeader>
-              <StyledImg
-                fluid={frontmatter.image.childImageSharp.fluid}
-                alt={frontmatter.title}
-                imgStyle={{ objectFit: "contain" }}
-              />
-              <div>
-                <h1>{frontmatter.title}</h1>
-                <h2>{frontmatter.description}</h2>
-                <a target="_blank" href={frontmatter.link}>
-                  View GitHub
-                </a>
-              </div>
-            </ProjectHeader>
-            <ProjectBody>
-              <ProjectTech>
-                <h3>Tech</h3>
-                <ul>
-                  {frontmatter.tech.map(item => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </ProjectTech>
-              <ProjectText>
-                <div dangerouslySetInnerHTML={{ __html: html }} />
-                <Link to="/projects">Back</Link>
-              </ProjectText>
-            </ProjectBody>
-          </Container>
-        </section>
-      </Project>
-    </Layout>
+    <Project>
+      <section>
+        <Container>
+          <ProjectHeader>
+            <StyledImg
+              fluid={frontmatter.image.childImageSharp.fluid}
+              alt={frontmatter.title}
+              imgStyle={{ objectFit: "contain" }}
+            />
+            <div>
+              <h1>{frontmatter.title}</h1>
+              <h2>{frontmatter.description}</h2>
+              <a target="_blank" href={frontmatter.link}>
+                View GitHub
+              </a>
+            </div>
+          </ProjectHeader>
+          <ProjectBody>
+            <ProjectTech>
+              <h3>Tech</h3>
+              <ul>
+                {frontmatter.tech.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </ProjectTech>
+            <ProjectText>
+              <div dangerouslySetInnerHTML={{ __html: html }} />
+              <Link to="/projects">Back</Link>
+            </ProjectText>
+          </ProjectBody>
+        </Container>
+      </section>
+    </Project>
   )
 }
 

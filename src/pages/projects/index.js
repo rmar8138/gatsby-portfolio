@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import Layout from "./../../components/layout"
 import Container from "./../../components/container"
 import {
   StyledImg,
@@ -41,32 +40,30 @@ const ProjectsPage = () => {
   `)
   const { edges } = data.allMarkdownRemark
   return (
-    <Layout>
-      <Projects>
-        <Container>
-          <h1>Projects</h1>
-          <ul>
-            {edges.map(edge => (
-              <ProjectsListItem key={edge.node.fields.slug}>
-                <ProjectImage to={`/projects/${edge.node.fields.slug}`}>
-                  <StyledImg
-                    fluid={edge.node.frontmatter.image.childImageSharp.fluid}
-                    alt={edge.node.frontmatter.title}
-                  />
-                </ProjectImage>
-                <ProjectText>
-                  <h4>{edge.node.frontmatter.title}</h4>
-                  <p>{edge.node.frontmatter.description}</p>
-                  <ProjectLink to={`/projects/${edge.node.fields.slug}`}>
-                    View Project
-                  </ProjectLink>
-                </ProjectText>
-              </ProjectsListItem>
-            ))}
-          </ul>
-        </Container>
-      </Projects>
-    </Layout>
+    <Projects>
+      <Container>
+        <h1>Projects</h1>
+        <ul>
+          {edges.map(edge => (
+            <ProjectsListItem key={edge.node.fields.slug}>
+              <ProjectImage to={`/projects/${edge.node.fields.slug}`}>
+                <StyledImg
+                  fluid={edge.node.frontmatter.image.childImageSharp.fluid}
+                  alt={edge.node.frontmatter.title}
+                />
+              </ProjectImage>
+              <ProjectText>
+                <h4>{edge.node.frontmatter.title}</h4>
+                <p>{edge.node.frontmatter.description}</p>
+                <ProjectLink to={`/projects/${edge.node.fields.slug}`}>
+                  View Project
+                </ProjectLink>
+              </ProjectText>
+            </ProjectsListItem>
+          ))}
+        </ul>
+      </Container>
+    </Projects>
   )
 }
 

@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import Layout from "./../components/layout"
 import Container from "./../components/container"
 import { Header, About, Skills, Bio } from "./_styles"
 
@@ -24,7 +23,7 @@ const HomePage = () => {
 
   const { frontmatter, html } = data.allMarkdownRemark.edges[0].node
   return (
-    <Layout>
+    <>
       <Header>
         <Container>
           <h1>Ragan Martinez</h1>
@@ -48,7 +47,7 @@ const HomePage = () => {
           </Bio>
         </About>
       </Container>
-    </Layout>
+    </>
   )
 }
 

@@ -24,7 +24,6 @@ export const Projects = styled.div`
 
     @media screen and (min-width: ${({ theme }) => theme.fsLarge}) {
       font-size: ${({ theme }) => theme.fsXlarge};
-      margin-top: -10rem;
     }
   }
 `
