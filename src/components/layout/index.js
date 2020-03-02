@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component, createRef } from "react"
 import { ThemeProvider } from "styled-components"
 import Navbar from "./../navbar"
 import Menu from "./../menu"
@@ -8,15 +8,33 @@ import { theme, GlobalStyle } from "./../styles/globalStyles"
 class Layout extends Component {
   state = {
     menuOpen: false,
+    transparentNavbar: false,
+  }
+
+  footerRef = createRef()
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleTransparentNavbar)
   }
 
   toggleMenu = () => {
     this.setState(state => ({ menuOpen: !state.menuOpen }))
   }
 
+  handleTransparentNavbar = () => {
+    const { transparentNavbar } = this.state
+    const footerY = this.footerRef.current.getBoundingClientRect().y
+    console.log(footerY)
+    if (footerY < 68 && !transparentNavbar) {
+      this.setState({ transparentNavbar: true })
+    } else if (footerY > 68 && transparentNavbar) {
+      this.setState({ transparentNavbar: false })
+    }
+  }
+
   render() {
-    const { menuOpen } = this.state
-    const { children } = this.props
+    const { menuOpen, transparentNavbar } = this.state
+    const { children, invert } = this.props
 
     return (
       <ThemeProvider theme={theme}>
@@ -24,11 +42,13 @@ class Layout extends Component {
         <Navbar
           toggleMenu={this.toggleMenu}
           menuOpen={menuOpen}
-          invert={this.props.invert}
+          invert={invert}
+          transparentNavbar={transparentNavbar}
+          id="navbar"
         />
         {menuOpen && <Menu />}
         {children}
-        <Footer />
+        <Footer id="footer" ref={this.footerRef} />
       </ThemeProvider>
     )
   }

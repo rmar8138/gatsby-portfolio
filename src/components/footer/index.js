@@ -2,7 +2,7 @@ import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import { StyledFooter, Logo, Contact, Social } from "./styles"
 
-const Footer = () => {
+const Footer = React.forwardRef((props, ref) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -19,7 +19,7 @@ const Footer = () => {
   const socials = data.site.siteMetadata.socials
 
   return (
-    <StyledFooter>
+    <StyledFooter ref={ref}>
       <Logo>
         <Link to="/">RM</Link>
       </Logo>
@@ -39,6 +39,6 @@ const Footer = () => {
       <span>Copyright &copy; {new Date().getFullYear()}</span>
     </StyledFooter>
   )
-}
+})
 
 export default Footer
