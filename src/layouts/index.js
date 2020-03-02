@@ -5,7 +5,7 @@ import Menu from "./../components/menu"
 import Footer from "./../components/footer"
 import { theme, GlobalStyle } from "./styles.js"
 
-const regex = /\/projects\/.*/
+const regex = /\/projects\/.+/
 
 class Layout extends Component {
   state = {
