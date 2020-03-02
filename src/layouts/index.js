@@ -11,6 +11,7 @@ class Layout extends Component {
   state = {
     menuOpen: false,
     transparentNavbar: false,
+    invertNavbarText: false,
     invert: false,
   }
 
@@ -46,15 +47,26 @@ class Layout extends Component {
     const { transparentNavbar } = this.state
     const footerY = this.footerRef.current.getBoundingClientRect().y
 
-    if (footerY < 68 && !transparentNavbar) {
-      this.setState({ transparentNavbar: true })
-    } else if (footerY > 68 && transparentNavbar) {
-      this.setState({ transparentNavbar: false })
+    // only perform when not in individual projects page
+    if (!this.props.location.pathname.match(regex)) {
+      // change navbar background to transparent if it overlaps with footer
+      if (footerY < 68 && !transparentNavbar) {
+        this.setState({ transparentNavbar: true })
+      } else if (footerY > 68 && transparentNavbar) {
+        this.setState({ transparentNavbar: false })
+      }
+
+      // invert navbar text if it overlaps with footer
+      if (footerY < 34) {
+        this.setState({ invertNavbarText: true })
+      } else {
+        this.setState({ invertNavbarText: false })
+      }
     }
   }
 
   render() {
-    const { menuOpen, transparentNavbar, invert } = this.state
+    const { menuOpen, transparentNavbar, invertNavbarText, invert } = this.state
     const { children } = this.props
 
     return (
@@ -65,11 +77,11 @@ class Layout extends Component {
           menuOpen={menuOpen}
           invert={invert}
           transparentNavbar={transparentNavbar}
-          id="navbar"
+          invertNavbarText={invertNavbarText}
         />
         {menuOpen && <Menu />}
         {children}
-        <Footer id="footer" ref={this.footerRef} />
+        <Footer ref={this.footerRef} />
       </ThemeProvider>
     )
   }

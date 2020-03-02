@@ -32,7 +32,8 @@ export const StyledNav = styled.nav`
   z-index: 2;
 
   a {
-    color: ${({ invert, theme }) => (invert ? theme.white : theme.black)};
+    color: ${({ invert, invertNavbarText, theme }) =>
+      invert || invertNavbarText ? theme.white : theme.black};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
@@ -48,8 +49,8 @@ export const StyledNav = styled.nav`
 `
 
 export const MenuButton = styled(Button)`
-  color: ${({ invert, menuOpen, theme }) =>
-    menuOpen || invert ? theme.white : theme.black};
+  color: ${({ invert, invertNavbarText, menuOpen, theme }) =>
+    menuOpen || invert || invertNavbarText ? theme.white : theme.black};
 
   @media screen and (min-width: ${({ theme }) => theme.bpMedium}) {
     display: none;

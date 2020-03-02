@@ -2,12 +2,19 @@ import React from "react"
 import { Link } from "gatsby"
 import { StyledNav, MenuButton, Navlist } from "./styles"
 
-const Navbar = ({ invert, toggleMenu, menuOpen, transparentNavbar }) => {
+const Navbar = ({
+  invert,
+  toggleMenu,
+  menuOpen,
+  transparentNavbar,
+  invertNavbarText,
+}) => {
   return (
     <StyledNav
       menuOpen={menuOpen}
       invert={invert}
       transparentNavbar={transparentNavbar}
+      invertNavbarText={invertNavbarText}
     >
       <span>
         <Link to="/">Ragan Martinez</Link>
@@ -16,6 +23,7 @@ const Navbar = ({ invert, toggleMenu, menuOpen, transparentNavbar }) => {
         onClick={() => toggleMenu()}
         menuOpen={menuOpen}
         invert={invert}
+        invertNavbarText={invertNavbarText}
       >
         {menuOpen ? "Close" : "Menu"}
       </MenuButton>
