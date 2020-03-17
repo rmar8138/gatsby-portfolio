@@ -49,5 +49,17 @@ module.exports = {
       },
     },
     `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Ragan Martinez`,
+        short_name: `RM`,
+        start_url: `/`,
+        background_color: `#d1d1d1`,
+        theme_color: `#777`,
+        display: `standalone`,
+        icon: `src/assets/images/icons/favicon.png`,
+      },
+    },
   ],
 }
