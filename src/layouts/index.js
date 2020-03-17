@@ -1,5 +1,7 @@
 import React, { Component, createRef } from "react"
 import { ThemeProvider } from "styled-components"
+import Helmet from "react-helmet"
+import { pathnameToTitle } from "./../utils/formatting"
 import Navbar from "./../components/navbar"
 import Menu from "./../components/menu"
 import Footer from "./../components/footer"
@@ -67,10 +69,13 @@ class Layout extends Component {
 
   render() {
     const { menuOpen, transparentNavbar, invertNavbarText, invert } = this.state
-    const { children } = this.props
+    const { children, location } = this.props
 
     return (
       <ThemeProvider theme={theme}>
+        <Helmet>
+          <title>{pathnameToTitle(location.pathname)}</title>
+        </Helmet>
         <GlobalStyle menuOpen={menuOpen} />
         <Navbar
           toggleMenu={this.toggleMenu}
