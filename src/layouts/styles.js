@@ -37,6 +37,9 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.black};
     line-height: 1.6;
     overflow: ${props => (props.menuOpen ? "hidden" : "visible")};
+    transition: background-color 0.5s ease-in;
+    background-color: ${({ menuOpen, theme }) =>
+      menuOpen ? theme.black : theme.white};
   }
 
   h1,

@@ -8,7 +8,8 @@ const handleBackgroundColour = ({
   theme,
 }) => {
   if (invert || menuOpen) {
-    return theme.black
+    // return theme.black
+    return "transparent"
   } else if (transparentNavbar) {
     return "transparent"
   } else {
@@ -30,6 +31,9 @@ export const StyledNav = styled.nav`
   left: 0;
   padding: 2rem;
   z-index: 2;
+  /* transition: all 0.5s ease-in; */
+  /* transition: ${({ invert, transparentNavbar }) =>
+    !transparentNavbar ? "all 0.5s ease-in" : "unset"}; */
 
   a {
     color: ${({ invert, invertNavbarText, theme }) =>

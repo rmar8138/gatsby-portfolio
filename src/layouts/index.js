@@ -42,7 +42,14 @@ class Layout extends Component {
   }
 
   toggleMenu = () => {
-    this.setState(state => ({ menuOpen: !state.menuOpen }))
+    if (this.props.location.pathname.match(regex)) {
+      this.setState(state => ({ menuOpen: !state.menuOpen }))
+    } else {
+      this.setState(state => ({
+        menuOpen: !state.menuOpen,
+        invert: !state.invert,
+      }))
+    }
   }
 
   handleTransparentNavbar = () => {
@@ -84,7 +91,7 @@ class Layout extends Component {
           transparentNavbar={transparentNavbar}
           invertNavbarText={invertNavbarText}
         />
-        {menuOpen && <Menu />}
+        {menuOpen && <Menu menuOpen={menuOpen} />}
         {children}
         <Footer ref={this.footerRef} />
       </ThemeProvider>
