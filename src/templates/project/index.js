@@ -46,7 +46,11 @@ const ProjectTemplate = ({ data }) => {
             <div>
               <h1>{frontmatter.title}</h1>
               <h2>{frontmatter.description}</h2>
-              <a target="_blank" href={frontmatter.link}>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={frontmatter.link}
+              >
                 View GitHub
               </a>
             </div>
