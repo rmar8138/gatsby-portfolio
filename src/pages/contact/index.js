@@ -32,7 +32,7 @@ const ContactPage = () => {
         <SocialList>
           {socials.map(social => (
             <li key={social.link}>
-              <a target="_blank" href={social.link}>
+              <a target="_blank" rel="noopener noreferrer" href={social.link}>
                 <img src={social.icon} alt={social.name} />
               </a>
             </li>
