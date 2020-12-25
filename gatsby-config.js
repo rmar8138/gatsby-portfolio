@@ -31,13 +31,10 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          {
-            family: `Karla`,
-            variants: [`400`, `400i`, `700`],
-          },
+          "Karla\:400,400i,700"
         ],
       },
     },
